@@ -1,7 +1,7 @@
 // AppRouter.jsx (atau file utama konfigurasi router)
 
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { HashRouter, RouterProvider } from 'react-router-dom';
 
 // Import Layout dan Komponen Halaman
 import Layout from './layout'; 
@@ -12,7 +12,7 @@ import Products from './Products'; // Komponen Products (Perlu dibuat)
 // import NotFound from './NotFound'; // Komponen 404 (Perlu dibuat)
 import './index.css'; // Pastikan styling global diimpor
 // 1. Definisikan Struktur Router
-const router = createBrowserRouter([
+const router = HashRouter([
   {
     path: '/',
     element: <Layout />,
