@@ -1,53 +1,117 @@
-// Header.jsx
-import React from 'react';
-import { ShoppingCart, Menu } from 'lucide-react'; 
-import { Link } from 'react-router-dom';// Menggunakan ikon Lucide
+import React, { useState, useEffect } from "react";
+import { ShoppingCart, Menu, X } from "lucide-react";
 
 const Header = () => {
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Products', href: '/products' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'FAQ', href: '/faq' },
+    { name: "Home", href: "#hero" },
+    { name: "Kegunaan", href: "#kegunaan" },
+    { name: "Indikasi", href: "#indikasi" },
+    { name: "Contact", href: "#contact" },
   ];
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
-        {/* Logo Brand */}
-        <div className="flex items-center space-x-2">
-          {/* Logo Brand PURE HEALTH (contoh ikon daun) */}
-          <span className="text-2xl font-bold text-teal-600">🌿 PURE HEALTH</span>
-        </div>
-
-        {/* Navigasi Desktop */}
-        <nav className="hidden lg:flex space-x-8">
-    {navItems.map((item) => (
-      <Link // Ganti <a> dengan <Link>
-        key={item.name}
-        to={item.href} // Ganti href dengan to
-        className="text-gray-600 hover:text-teal-500 transition duration-150 font-medium"
+    <>
+      {/* Header Utama */}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-sm shadow-md transition-transform duration-500 ${
+          showHeader ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
-        {item.name}
-      </Link>
-    ))}
-  </nav>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-4">
+            <div>
+              <h1 className="text-lg font-bold">HAHO LIFE</h1>
+              <p className="text-xs text-slate-500">
+                Health for All — Happiness all Over
+              </p>
+            </div>
+          </div>
 
-        {/* CTA & Ikon */}
-        <div className="flex items-center space-x-4">
-          <button className="hidden lg:block bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md">
-            Beli Sekarang
-          </button>
-          <ShoppingCart className="h-6 w-6 text-gray-700 cursor-pointer hover:text-teal-600" />
-          
-          {/* Menu Mobile (Hamburger) */}
-          <button className="lg:hidden text-gray-700 hover:text-teal-600">
+          {/* Navigasi Desktop */}
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="hover:text-purple-600 font-medium transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md">
+              Beli Sekarang
+            </button>
+          </nav>
+
+          {/* Tombol Mobile */}
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className="md:hidden text-gray-700 hover:text-teal-600"
+          >
             <Menu className="h-6 w-6" />
           </button>
         </div>
+      </header>
+
+      {/* Menu Mobile */}
+      <div
+        className={`fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 transform transition-transform duration-500 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center px-6 py-5 border-b border-gray-200">
+          <h2 className="text-xl font-bold text-purple-700">Menu</h2>
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="text-gray-700 hover:text-purple-600"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col mt-6 space-y-4 px-6">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-gray-700 text-lg font-medium hover:text-teal-600 transition-all"
+            >
+              {item.name}
+            </a>
+          ))}
+          <button className="mt-6 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-full transition duration-300 shadow-md">
+            Beli Sekarang
+          </button>
+        </nav>
       </div>
-    </header>
+
+      {/* Overlay saat menu aktif */}
+      {isMenuOpen && (
+        <div
+          onClick={() => setIsMenuOpen(false)}
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-opacity duration-300"
+        ></div>
+      )}
+    </>
   );
 };
 

@@ -12,5 +12,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/Brosur/'
+  base: '/haho-life/'
 })
