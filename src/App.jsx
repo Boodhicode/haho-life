@@ -46,7 +46,7 @@ export default function App() {
 
             {/* Floating quick-contact button */}
             <a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/6282376751119"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed right-5 bottom-5 z-50 group"

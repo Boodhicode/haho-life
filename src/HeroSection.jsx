@@ -81,7 +81,7 @@ const HeroSection = () => {
             className="flex flex-wrap gap-4 justify-center md:justify-start pt-2"
           >
             <motion.a
-              href="#contact"
+              href="https://wa.me/6282376751119"
               whileHover={{
                 scale: 1.07,
                 boxShadow: "0px 0px 25px rgba(168,85,247,0.4)",

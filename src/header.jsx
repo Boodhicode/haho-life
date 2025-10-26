@@ -30,9 +30,8 @@ const Header = () => {
     <>
       {/* Header Utama */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-sm shadow-md transition-transform duration-500 ${
-          showHeader ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-sm shadow-md transition-transform duration-500 ${showHeader ? "translate-y-0" : "-translate-y-full"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
@@ -56,9 +55,14 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
-            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md">
-              Beli Sekarang
-            </button>
+            <a
+              href="https://wa.me/6282376751119"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fixed right-5 bottom-5 z-50 group"
+            ><button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md">
+                Beli Sekarang
+              </button></a>
           </nav>
 
           {/* Tombol Mobile */}
@@ -73,9 +77,8 @@ const Header = () => {
 
       {/* Menu Mobile */}
       <div
-        className={`fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 transform transition-transform duration-500 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 transform transition-transform duration-500 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex justify-between items-center px-6 py-5 border-b border-gray-200">
           <h2 className="text-xl font-bold text-purple-700">Menu</h2>
