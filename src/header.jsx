@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const navItems = [
@@ -64,7 +64,7 @@ const Header = () => {
           {/* Tombol Mobile */}
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="md:hidden text-gray-700 hover:text-teal-600"
+            className="md:hidden text-gray-700 hover:text-purple-600"
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -93,7 +93,7 @@ const Header = () => {
               key={item.name}
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 text-lg font-medium hover:text-teal-600 transition-all"
+              className="text-gray-700 text-lg font-medium hover:text-purple-600 transition-all"
             >
               {item.name}
             </a>
